@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button
+      id="button" 
+      h-html="text"
+      h:style="background"
+      h:class="class"
+    ></button>
+  </div>
+  <!-- <script src="../dist/hydor.umd.development.js"></script> -->
+  <script type="module">
+    import Hydor from '../dist/hydor.esm.js'
+
+    class Button {
+      text = '';
+
+      setText(text) {
+        this.text = text
+      }
+    }
+
+    const button = Hydor('#button', new Button);
+    button.setText('Holaaaa!')
+    
+    // example.text = 'Texto cambiado con Hydor';
+    button.background = 'background: red';
+    button.class = 'Example class'
+  </script>
+</body>
+</html>
