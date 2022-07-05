@@ -7,32 +7,34 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
+  <section id="grocery-list">
+    <ul>
+      <li h-for="product in products" h-key="product" h-html="product"></li>
+    </ul>
+    <input type="text" h-model="newProduct">
+    <!-- h-on:click="addProduct(newProduct)"
+    h-bind:style="background" -->
     <button
-      id="button" 
-      h-html="text"
-      h:style="background"
-      h:class="class"
-    ></button>
-  </div>
-  <!-- <script src="../dist/hydor.umd.development.js"></script> -->
+      h-text="literals.asdf"
+    >Añadir producto</button>
+  </section>
+
   <script type="module">
     import Hydor from '../dist/hydor.esm.js'
 
-    class Button {
-      text = '';
+    class GroceryList {
+      products = [];
+      background = 'background: red';
+      literals = {
+        btn: 'Button text'
+      }
 
-      setText(text) {
-        this.text = text
+      addProduct(newProduct) {
+        this.products = [...this.products, newProduct];
       }
     }
 
-    const button = Hydor('#button', new Button);
-    button.setText('Holaaaa!')
-    
-    // example.text = 'Texto cambiado con Hydor';
-    button.background = 'background: red';
-    button.class = 'Example class'
+    window.list = Hydor('#grocery-list', new GroceryList);
   </script>
 </body>
 </html>
